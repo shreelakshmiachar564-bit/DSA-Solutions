@@ -1,2 +1,8 @@
-# DSA-Solutions
-Collection of Data Structures and Algorithms solutions with optimized approaches and explanations.
+# DSA Solutions Repository
+
+This repository contains my Data Structures and Algorithms practice solutions from:
+- LeetCode
+- GeeksForGeeks
+
+Languages:
+- C++
