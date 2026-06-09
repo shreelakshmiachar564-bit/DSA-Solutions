@@ -1,0 +1,103 @@
+/*
+Problem: Subsequence with Sum K
+
+Platform: GeeksforGeeks
+
+Difficulty: Easy
+
+Concepts Used:
+- Recursion
+- Backtracking
+- Include / Exclude Pattern
+
+Problem Statement:
+Given an array of integers and a target sum K,
+determine whether there exists a subsequence whose
+sum is exactly equal to K.
+
+A subsequence can be formed by deleting zero or more
+elements without changing the order of the remaining elements.
+
+Approach:
+1. For every element, we have two choices:
+   - Include the current element in the subsequence.
+   - Exclude the current element.
+
+2. Reduce the target sum when including an element:
+      k = k - arr[i]
+
+3. If k becomes 0, a valid subsequence has been found.
+
+4. If all elements are processed and k is not 0,
+   return false.
+
+5. Return true if either the include or exclude path
+   finds a valid subsequence.
+
+Time Complexity:
+O(2^N)
+
+Explanation:
+Each element has two choices:
+Include or Exclude.
+
+Space Complexity:
+O(N)
+
+Explanation:
+Recursion stack depth.
+
+Example 1:
+Input:
+arr = [1, 2, 3]
+k = 5
+
+Output:
+true
+
+Explanation:
+Subsequence:
+[2, 3]
+
+Sum:
+2 + 3 = 5
+
+Example 2:
+Input:
+arr = [1, 2, 3]
+k = 7
+
+Output:
+false
+
+Explanation:
+No subsequence exists whose sum is 7.
+
+Key Learning:
+- Include / Exclude Recursion Pattern
+- Backtracking
+- Early Termination when target becomes 0
+*/
+
+class Solution {
+public:
+
+    bool solve(vector<int> arr, int i, int k) {
+
+        // Valid subsequence found
+        if (k == 0)
+            return true;
+
+        // Out of bounds or negative target
+        if (k < 0 || i == arr.size())
+            return false;
+
+        // Include current element OR Exclude current element
+        return solve(arr, i + 1, k - arr[i]) ||
+               solve(arr, i + 1, k);
+    }
+
+    bool checkSubsequenceSum(vector<int>& arr, int k) {
+        return solve(arr, 0, k);
+    }
+};
